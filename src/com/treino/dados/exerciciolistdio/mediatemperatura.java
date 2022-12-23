@@ -10,36 +10,39 @@ public class mediatemperatura {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        List<Double> temperatura = new ArrayList<>();
-        List<String> meses = new ArrayList<>();
-        meses.add("Janeiro");
-        meses.add("Fevereiro");
-        meses.add("Março");
-        meses.add("Abril");
-        meses.add("Maio");
-        meses.add("Junho");
+        List<Clima> temperaturaMeses = new ArrayList<>();
 
         System.out.println("--------------- Wether Report---------------");
         System.out.println("- Digite as temperaturas do semestre -");
 
-        for (String mes:meses) {
-            System.out.println("Temperatura média de: " + mes);
-            temperatura.add(sc.nextDouble());
+        int meses = 7;
+        for (int i =1;i<meses;i++) {
+            System.out.println("Digite o "+i+"° mes do ano e a temperatura média: ");
+            temperaturaMeses.add(new Clima(sc.next(), sc.nextDouble()));
         }
-        Iterator<Double> soma = temperatura.iterator();
+
+        Iterator<Clima> soma = temperaturaMeses.iterator();
         double somaTemperatura = 0;
         while(soma.hasNext()){
-            double proximaTemperatura = soma.next();
+            double proximaTemperatura = soma.next().getTemperatura();
             somaTemperatura += proximaTemperatura;
         }
-        double media = somaTemperatura/temperatura.size();
+        double media = somaTemperatura/temperaturaMeses.size();
+        System.out.println(media%2d);
 
-        Iterator<Double> acimaMedia = temperatura.iterator();
+        List<String> mesesAcimaMedia = new ArrayList<>();
+
+        Iterator<Clima> acimaMedia = temperaturaMeses.iterator();
         while(acimaMedia.hasNext()){
-        double proximoTemp = acimaMedia.next();
+        double proximoTemp = acimaMedia.next().getTemperatura();
+        String proximoMes = acimaMedia.next().getMeses();
         if(proximoTemp>media){
-            // Hora da refatoração.
+            mesesAcimaMedia.add(proximoMes);
             }
+        }
+        System.out.println("A temperatura ficou acima da média em:");
+        for (String m:mesesAcimaMedia) {
+            System.out.println(m);
         }
         sc.close();
     }
