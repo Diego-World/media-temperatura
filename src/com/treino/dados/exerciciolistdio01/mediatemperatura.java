@@ -1,4 +1,4 @@
-package com.treino.dados.exerciciolistdio;
+package com.treino.dados.exerciciolistdio01;
 
 import java.util.ArrayList;
 import java.util.Iterator;
